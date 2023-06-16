@@ -30,17 +30,45 @@
         android:src="@drawable/ic_camera_viewfinder"/>
 
     <TextView
+        android:id="@+id/txtScanned"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:background="@drawable/bg_scanned_text"
+        android:text=""
+        android:hint="Scanned text will be here"
+        android:gravity="center_horizontal"
+        android:textColor="@color/brown"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:padding="@dimen/_5sdp"
+        android:textSize="@dimen/_18ssp"/>
+
+    <TextView
         android:id="@+id/txtHistory"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_10sdp"
         android:layout_marginEnd="@dimen/_10sdp"
-        android:textStyle="bold"
         android:text="History: "
         android:textColor="@color/brown"
-        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_10sdp"
         android:padding="@dimen/_5sdp"
-        android:textSize="@dimen/_18ssp"/>
+        android:textSize="@dimen/_16ssp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:layout_marginBottom="@dimen/_10sdp">
+        <ListView
+            android:id="@+id/listView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </ListView>
+    </LinearLayout>
     <!--    <TextView-->
     <!--        android:id="@+id/txtViewEncode"-->
     <!--        android:layout_width="match_parent"-->
