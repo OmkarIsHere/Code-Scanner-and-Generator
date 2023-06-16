@@ -9,6 +9,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 
 import android.os.Environment;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,15 +24,16 @@ import com.google.zxing.BarcodeFormat;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Timer;
 
 
 public class GenerateFragment extends Fragment {
 
     private static final String TAG = "GenerateFragment";
     ImageView encodeImg;
+    Timer timer;
     EditText inputText;
     ProgressBar progressBar;
     Button btnGenerate, btnDownload;
@@ -47,14 +49,30 @@ public class GenerateFragment extends Fragment {
         progressBar = view.findViewById(R.id.progressBar);
 
         btnGenerate.setOnClickListener(v -> {
-            try {
-                BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
-                Bitmap bitmap = barcodeEncoder.encodeBitmap(inputText.getText().toString().trim(), BarcodeFormat.QR_CODE, 400, 400);
-                btnDownload.setVisibility(View.VISIBLE);
-                encodeImg.setImageBitmap(bitmap);
-            } catch(Exception e) {
-                e.printStackTrace();
-            }
+            progressBar.setVisibility(View.VISIBLE);
+            encodeImg.setVisibility(View.GONE);
+            btnDownload.setVisibility(View.GONE);
+            Log.d(TAG, "progress bar: set");
+            final Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        Log.d(TAG, "progress bar: code run");
+                        BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
+                        Bitmap bitmap = barcodeEncoder.encodeBitmap(inputText.getText().toString().trim(), BarcodeFormat.QR_CODE, 800, 800);
+                        progressBar.setVisibility(View.GONE);
+                        btnDownload.setVisibility(View.VISIBLE);
+                        Log.d(TAG, "progress bar: gone");
+                        encodeImg.setVisibility(View.VISIBLE);
+                        encodeImg.setImageBitmap(bitmap);
+                    } catch(Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }, 2000);
+
+
         });
 
         btnDownload.setOnClickListener(v -> {

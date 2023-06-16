@@ -62,15 +62,16 @@ public class ScanFragment extends Fragment {
     ActivityResultLauncher<ScanOptions> barLaucher = registerForActivityResult(new ScanContract(), result -> {
         if(result.getContents()!= null){
             qrEncode=result.getContents();
-            if(qrEncode.contains("https://www.") || qrEncode.contains("http://www.")){
+            if(qrEncode.contains("https://www") || qrEncode.contains("http://www")){
                 txtScanned.setText(qrEncode);
                 txtScanned.setTextColor(ContextCompat.getColor(requireContext(), R.color.blue));
                 txtScanned.setOnClickListener(v -> {
                     startActivity(new Intent(getActivity(), WebViewActivity.class));
                 });
+            }else{
+                txtScanned.setText(qrEncode);
+                txtScanned.setTextColor(ContextCompat.getColor(requireContext(), R.color.black));
             }
-            txtScanned.setText(qrEncode);
-            txtScanned.setTextColor(ContextCompat.getColor(requireContext(), R.color.black));
 
             LocalDate today = null;
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
