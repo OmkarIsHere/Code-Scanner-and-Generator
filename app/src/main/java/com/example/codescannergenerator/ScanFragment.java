@@ -66,7 +66,9 @@ public class ScanFragment extends Fragment {
                 txtScanned.setText(qrEncode);
                 txtScanned.setTextColor(ContextCompat.getColor(requireContext(), R.color.blue));
                 txtScanned.setOnClickListener(v -> {
-                    startActivity(new Intent(getActivity(), WebViewActivity.class));
+                    Intent i = new Intent(getActivity(), WebViewActivity.class);
+                    i.putExtra("link", qrEncode);
+                    startActivity(i);
                 });
             }else{
                 txtScanned.setText(qrEncode);

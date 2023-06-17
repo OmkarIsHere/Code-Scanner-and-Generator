@@ -33,7 +33,6 @@ public class GenerateFragment extends Fragment {
 
     private static final String TAG = "GenerateFragment";
     ImageView encodeImg;
-    Timer timer;
     EditText inputText;
     ProgressBar progressBar;
     Button btnGenerate, btnDownload;
