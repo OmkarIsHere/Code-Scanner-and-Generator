@@ -1,5 +1,12 @@
 package com.example.codescannergenerator;
 
+import static android.content.Context.CLIPBOARD_SERVICE;
+
+import static androidx.core.content.ContextCompat.getSystemService;
+
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -7,11 +14,10 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -48,6 +54,17 @@ public class ScanFragment extends Fragment {
         ArrayList<EncodeData> arrayList = dBhelper.getData();
         ListAdapter listAdapter = new ListAdapter(getActivity(), arrayList);
         listView.setAdapter(listAdapter);
+
+        txtScanned.setOnLongClickListener(v -> {
+            String s = txtScanned.getText().toString().trim();
+            if(!s.isEmpty()) {
+                ClipboardManager clipboard = (ClipboardManager) requireContext().getSystemService(CLIPBOARD_SERVICE);
+                ClipData clip = ClipData.newPlainText("label", s);
+                clipboard.setPrimaryClip(clip);
+                Toast.makeText(getActivity(), "Text Copied to clipboard", Toast.LENGTH_SHORT).show();
+            }
+                return false;
+        });
 
         return view;
     }
@@ -91,8 +108,6 @@ public class ScanFragment extends Fragment {
             ListAdapter listAdapter = new ListAdapter(getActivity(), arrayList);
             listView.setAdapter(listAdapter);
 
-//            for(int i=0; i<arrayList.size(); i++)
-//                Log.d(TAG, "Text: "+ arrayList.get(i).text+" Date: "+ arrayList.get(i).date);
     });
-    }
+}
 
