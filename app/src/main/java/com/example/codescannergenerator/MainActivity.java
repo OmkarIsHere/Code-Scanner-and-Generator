@@ -19,8 +19,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        tabLayout=findViewById(R.id.tabLayout);
-        viewPager=findViewById(R.id.viewPager);
+        tabLayout = findViewById(R.id.tabLayout);
+        viewPager = findViewById(R.id.viewPager);
 
         viewPagerAdapter = new ViewPagerAdapter(this);
         viewPager.setAdapter(viewPagerAdapter);
@@ -50,25 +50,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-
-//        btnCamera=findViewById(R.id.btnCamera);
-//        btnCamera.setOnClickListener(v -> {
-//            runCodeScanner();
-//        });
     }
-//    private void runCodeScanner() {
-//        ScanOptions options = new ScanOptions();
-//        options.setPrompt("Volume up to flash on");
-//        options.setBeepEnabled(true);
-//        options.setOrientationLocked(true);
-//        options.setCaptureActivity(ScannerCapt.class);
-//        barLaucher.launch(options);
-//    }
-//    ActivityResultLauncher<ScanOptions> barLaucher = registerForActivityResult(new ScanContract(), result -> {
-//        if(result.getContents()!= null){
-//            qrEncode=result.getContents();
-//        }
-//    });
 
 }

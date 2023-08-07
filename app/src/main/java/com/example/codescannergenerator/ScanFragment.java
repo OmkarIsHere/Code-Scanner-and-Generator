@@ -2,11 +2,9 @@ package com.example.codescannergenerator;
 
 import static android.content.Context.CLIPBOARD_SERVICE;
 
-import static androidx.core.content.ContextCompat.getSystemService;
 
 import android.content.ClipData;
 import android.content.ClipboardManager;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -79,7 +77,7 @@ public class ScanFragment extends Fragment {
     ActivityResultLauncher<ScanOptions> barLaucher = registerForActivityResult(new ScanContract(), result -> {
         if(result.getContents()!= null){
             qrEncode=result.getContents();
-            if(qrEncode.contains("https://www") || qrEncode.contains("http://www")){
+            if(qrEncode.contains("https://") || qrEncode.contains("http://")){
                 txtScanned.setText(qrEncode);
                 txtScanned.setTextColor(ContextCompat.getColor(requireContext(), R.color.blue));
                 txtScanned.setOnClickListener(v -> {
