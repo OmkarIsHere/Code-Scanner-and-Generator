@@ -3,9 +3,11 @@
 
 Welcome to Code Scanner and Generator! This Android Java application allows users to scan QR codes or barcodes and redirect to the website if they contain a URL. Additionally, users can generate QR codes and save them to local storage for easy sharing and usage.
 
-## Demo
+**Download Apk -** https://drive.google.com/file/d/1Qh6uEOTpU59VK6sU0KaMx6S2quegafAx/view?usp=sharing
 
- Demo will be added soon...
+## Preview
+
+https://github.com/OmkarIsHere/Code-Scanner-and-Generator/assets/101088359/49ac6a71-55a0-44a0-85b2-50243d6e269b
 
 
 ## Features
